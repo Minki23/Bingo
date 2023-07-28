@@ -21,6 +21,8 @@
           numberButtons[i].style.backgroundColor = "white";
           numberButtons[i].addEventListener('click', function() {
             toggleButtonColor(this);
+            document.getElementById("ostatni-container").style.opacity="1";
+            document.getElementById("ostatnia-button").innerText=this.innerText;
           });
           if(numberButtons[i].innerHTML>75){
             numberButtons[i].style.opacity="0"; 
@@ -40,6 +42,7 @@
           }
           popup.style.opacity="0";
           yesButton.style.pointerEvents="none";
+          document.getElementById("ostatnia-button").innerText="";
         })
         var resetButton=document.getElementById("reset");
         resetButton.addEventListener('click', function(){
@@ -169,7 +172,11 @@
       <button class="number">89</button>
       <button class="number">90</button>
     </div>
-    <div class="reset-container">
+    <div class="reset-container" id="reset-container">
+      <div class="ostatni-container" id="ostatni-container">
+        <p class="ostatnia-text">Ostatnia liczba:</p>
+        <button class="ostatnia-button" id="ostatnia-button"></button>
+      </div>
       <button id="reset" class="reset">
         Reset &#8617;
       </button>
