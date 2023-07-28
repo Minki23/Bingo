@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bingo</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      var colors
+      function toggleButtonColor(button) {
+        if (button.style.backgroundColor !== "white") {
+          button.style.backgroundColor = "white"; 
+          button.style.color="black";
+        } else {
+          button.style.backgroundColor = "rgb(255, 0, 0)";
+          button.style.color="white";
+        }
+      }
+  
+      window.onload = function() {
+        var numberButtons = document.getElementsByClassName("number");
+        for (var i = 0; i < numberButtons.length; i++) {
+          numberButtons[i].style.backgroundColor = "white";
+          numberButtons[i].addEventListener('click', function() {
+            toggleButtonColor(this);
+            document.getElementById("ostatni-container").style.opacity="1";
+            document.getElementById("ostatnia-button").innerText=this.innerText;
+          });
+          if(numberButtons[i].innerHTML>75){
+            numberButtons[i].style.opacity="0"; 
+          }
+         
+        }
+        var yesButton=document.getElementById("tak");
+        yesButton.style.pointerEvents="none";
+
+        var popup=document.getElementById("popup");
+        popup.style.opacity="0";
+
+        yesButton.addEventListener('click', function(){
+          for (var i = 0; i < numberButtons.length; i++) {
+            numberButtons[i].style.backgroundColor = "white"; 
+            numberButtons[i].style.color="black";
+          }
+          popup.style.opacity="0";
+          yesButton.style.pointerEvents="none";
+          document.getElementById("ostatnia-button").innerText="";
+        })
+        var resetButton=document.getElementById("reset");
+        resetButton.addEventListener('click', function(){
+          if(popup.style.opacity === "0"){
+            popup.style.opacity="1";
+            yesButton.style.pointerEvents="all";
+          }
+          else{
+            popup.style.opacity="0";
+            yesButton.style.pointerEvents="none";
+          }
+        })
+        var cancelButton=document.getElementById("anuluj");
+        cancelButton.addEventListener('click', function(){
+         popup.style.opacity="0";
+          yesButton.style.pointerEvents="none";
+        })
+
+        var slider=document.getElementById("slider");
+        slider.addEventListener('click', function(){
+          if(slider.checked==true){
+          for (var i = 0; i < numberButtons.length; i++) {
+            numberButtons[i].style.opacity="1";
+          }
+        }
+        else{
+          for (var i = 0; i < numberButtons.length; i++) {
+            if(numberButtons[i].innerHTML>75){
+              numberButtons[i].style.opacity="0";
+            }
+          }
+        }
+      })
+      };
+    </script>
+  </head>
+  <body>
+    <div class="grid">
+      <button class="number">1</button>
+      <button class="number">2</button>
+      <button class="number">3</button>
+      <button class="number">4</button>
+      <button class="number">5</button>
+      <button class="number">6</button>
+      <button class="number">7</button>
+      <button class="number">8</button>
+      <button class="number">9</button>
+      <button class="number">10</button>
+      <button class="number">11</button>
+      <button class="number">12</button>
+      <button class="number">13</button>
+      <button class="number">14</button>
+      <button class="number">15</button>
+      <button class="number">16</button>
+      <button class="number">17</button>
+      <button class="number">18</button>
+      <button class="number">19</button>
+      <button class="number">20</button>
+      <button class="number">21</button>
+      <button class="number">22</button>
+      <button class="number">23</button>
+      <button class="number">24</button>
+      <button class="number">25</button>
+      <button class="number">26</button>
+      <button class="number">27</button>
+      <button class="number">28</button>
+      <button class="number">29</button>
+      <button class="number">30</button>
+      <button class="number">31</button>
+      <button class="number">32</button>
+      <button class="number">33</button>
+      <button class="number">34</button>
+      <button class="number">35</button>
+      <button class="number">36</button>
+      <button class="number">37</button>
+      <button class="number">38</button>
+      <button class="number">39</button>
+      <button class="number">40</button>
+      <button class="number">41</button>
+      <button class="number">42</button>
+      <button class="number">43</button>
+      <button class="number">44</button>
+      <button class="number">45</button>
+      <button class="number">46</button>
+      <button class="number">47</button>
+      <button class="number">48</button>
+      <button class="number">49</button>
+      <button class="number">50</button>
+      <button class="number">51</button>
+      <button class="number">52</button>
+      <button class="number">53</button>
+      <button class="number">54</button>
+      <button class="number">55</button>
+      <button class="number">56</button>
+      <button class="number">57</button>
+      <button class="number">58</button>
+      <button class="number">59</button>
+      <button class="number">60</button>
+      <button class="number">61</button>
+      <button class="number">62</button>
+      <button class="number">63</button>
+      <button class="number">64</button>
+      <button class="number">65</button>
+      <button class="number">66</button>
+      <button class="number">67</button>
+      <button class="number">68</button>
+      <button class="number">69</button>
+      <button class="number">70</button>
+      <button class="number">71</button>
+      <button class="number">72</button>
+      <button class="number">73</button>
+      <button class="number">74</button>
+      <button class="number">75</button>
+      <button class="number">76</button>
+      <button class="number">77</button>
+      <button class="number">78</button>
+      <button class="number">79</button>
+      <button class="number">80</button>
+      <button class="number">81</button>
+      <button class="number">82</button>
+      <button class="number">83</button>
+      <button class="number">84</button>
+      <button class="number">85</button>
+      <button class="number">86</button>
+      <button class="number">87</button>
+      <button class="number">88</button>
+      <button class="number">89</button>
+      <button class="number">90</button>
+    </div>
+    <div class="reset-container" id="reset-container">
+      <div class="ostatni-container" id="ostatni-container">
+        <p class="ostatnia-text">Ostatnia liczba:</p>
+        <button class="ostatnia-button" id="ostatnia-button"></button>
+      </div>
+      <button id="reset" class="reset">
+        Reset &#8617;
+      </button>
+        <div id="popup" class="popup">
+          Czy napewno?
+        <div class="buttons">
+          <button id="tak" class="tak">Tak</button>
+          <button id="anuluj" class="anuluj">Anuluj</button>
+        </div>
+      </div>
+      <div class="slider-container">
+      <p>75</p>
+      <label class="switch">
+        <input type="checkbox" id="slider">
+        <span class="slider round"></span>
+      </label> 
+      <p>90</p>
+      </div>
+    </div>
+  </body>
+</html>
