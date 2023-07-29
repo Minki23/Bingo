@@ -16,18 +16,26 @@
       }
   
       window.onload = function() {
+
         var numberButtons = document.getElementsByClassName("number");
+
         for (var i = 0; i < numberButtons.length; i++) {
+          numberButtons[i].id="number"; 
           numberButtons[i].style.backgroundColor = "white";
+          if(i<75){
+            numberButtons[i].style.opacity="1"; 
+          }
+          else{
+            numberButtons[i].style.pointerEvents="none";
+          }
           numberButtons[i].addEventListener('click', function() {
             toggleButtonColor(this);
             document.getElementById("ostatni-container").style.opacity="1";
             document.getElementById("ostatnia-button").innerText=this.innerText;
+            if(this.style.backgroundColor == "rgb(255, 0, 0)"){
+              ani(this);
+            }
           });
-          if(numberButtons[i].innerHTML>75){
-            numberButtons[i].style.opacity="0"; 
-          }
-         
         }
         var yesButton=document.getElementById("tak");
         yesButton.style.pointerEvents="none";
@@ -44,6 +52,7 @@
           yesButton.style.pointerEvents="none";
           document.getElementById("ostatnia-button").innerText="";
         })
+
         var resetButton=document.getElementById("reset");
         resetButton.addEventListener('click', function(){
           if(popup.style.opacity === "0"){
@@ -66,17 +75,28 @@
           if(slider.checked==true){
           for (var i = 0; i < numberButtons.length; i++) {
             numberButtons[i].style.opacity="1";
+            numberButtons[i].style.pointerEvents="all";
           }
         }
         else{
           for (var i = 0; i < numberButtons.length; i++) {
             if(numberButtons[i].innerHTML>75){
               numberButtons[i].style.opacity="0";
+              numberButtons[i].style.pointerEvents="none";
             }
           }
         }
       })
       };
+
+      async function ani(btn) {
+        btn.className = 'animate';
+        await sleep(5000);
+        btn.className = 'number';
+      }
+      function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+      }
     </script>
   </head>
   <body>
@@ -175,7 +195,7 @@
     <div class="reset-container" id="reset-container">
       <div class="ostatni-container" id="ostatni-container">
         <p class="ostatnia-text">Ostatnia liczba:</p>
-        <button class="ostatnia-button" id="ostatnia-button"></button>
+        <div class="ostatnia-button" id="ostatnia-button"></div>
       </div>
       <button id="reset" class="reset">
         Reset &#8617;
