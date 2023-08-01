@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="styles.css">
     <script>
       var colors
+
+      var visitCount = localStorage.getItem("page_view");
+      visitCount = Number(visitCount) + 1;
+      localStorage.setItem("page_view", visitCount);
+      console.log(visitCount);
       function toggleButtonColor(button) {
         if (button.style.backgroundColor !== "white") {
           button.style.backgroundColor = "white"; 
@@ -97,9 +102,14 @@
       function sleep(ms) {
           return new Promise(resolve => setTimeout(resolve, ms));
       }
+      function reset(){
+        localStorage.setItem("page_view", 0);
+        console.log(localStorage.getItem("page_view"));
+      }
     </script>
   </head>
   <body>
+    <button class="inv" onclick="reset()">RESET</button>
     <div class="grid">
       <button class="number">1</button>
       <button class="number">2</button>

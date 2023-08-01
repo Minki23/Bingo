@@ -216,3 +216,9 @@ input:checked + .slider:before {
     transform: scale(1);
   }
 }
+.inv{
+  position: absolute;
+  opacity: 0;
+  top:0;
+  right: 0;
+}
