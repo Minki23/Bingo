@@ -1,9 +1,16 @@
 body{
-background-image: url('tlo4.png');
+background-image: url('https://c1.wallpaperflare.com/preview/387/365/88/printing-mock-up-bingo-numbers.jpg');
 background-size: cover;
 font-family: Arial;
 display: flex;
 align-items: center;
+}
+.logo{
+  position: absolute;
+  top:10px;
+  width: 50vw;
+  left: auto;
+  left: 11vw;
 }
 .grid{
   width: 50vw;

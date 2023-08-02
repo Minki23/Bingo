@@ -96,7 +96,7 @@
 
       async function ani(btn) {
         btn.className = 'animate';
-        await sleep(5000);
+        await sleep(5000);  
         btn.className = 'number';
       }
       function sleep(ms) {
@@ -109,6 +109,7 @@
     </script>
   </head>
   <body>
+    <img src="EVENT.png" class="logo">
     <button class="inv" onclick="reset()">RESET</button>
     <div class="grid">
       <button class="number">1</button>
