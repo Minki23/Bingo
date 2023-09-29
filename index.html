@@ -3,37 +3,44 @@
   <head>
     <title>Bingo</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <img src="EVENT.png" class="logo">
+    <img src="imgs/EVENT.png" class="logo">
     <button class="inv" onclick="reset()">RESET</button>
-    <div class="grid" id="grid">
+    <div class="grid">
       <!--tutaj dodaje przyciski z pomoca js-->
     </div>
-    <div class="ostatni-container" id="ostatni-container">
+    <div class="ostatni-container">
       <p class="ostatnia-text">Ostatnia liczba:</p>
-      <div class="ostatnia-button" id="ostatnia-button"></div>
+      <div class="ostatnia-button"></div>
     </div>
-    <div class="reset-container" id="reset-container">  
-      <button id="reset" class="reset">
-        Reset &#8617;
-      </button>
-        <div id="popup" class="popup">
-          Czy napewno?
-        <div class="buttons">
-          <button id="tak" class="tak">Tak</button>
-          <button id="anuluj" class="anuluj">Anuluj</button>
+    <div class="reset-container">  
+      <div class="slide">
+        <button class="show-settings">
+         <img src="imgs/icons8-cog-50.png"> 
+        </button>
+      </div>
+      <div class="settings-content">
+        <button class="reset">
+          Reset &#8617;
+        </button>
+          <div class="popup">
+            Czy napewno?
+          <div class="buttons">
+            <button class="tak">Tak</button>
+            <button class="anuluj">Anuluj</button>
+          </div>
         </div>
-      </div>
-      <div class="slider-container">
-      <p>75</p>
-      <label class="switch">
-        <input type="checkbox" id="slider">
-        <span class="slider round"></span>
-      </label> 
-      <p>90</p>
+        <div class="slider-container">
+        <p class="75">75</p>
+        <label class="switch">
+          <input type="checkbox" class="slider">
+          <span class="slider round"></span>
+        </label> 
+        <p class="90">90</p>
       </div>
     </div>
+  </div>
   </body>
 </html>
