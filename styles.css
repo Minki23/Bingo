@@ -1,16 +1,16 @@
 body{
-background-image: url('https://c1.wallpaperflare.com/preview/387/365/88/printing-mock-up-bingo-numbers.jpg');
+background-image: url('printing-mock-up-bingo-numbers.jpg');
 background-size: cover;
 font-family: Arial;
 display: flex;
 align-items: center;
+overflow: hidden;
 }
 .logo{
   position: absolute;
   top:10px;
   width: 50vw;
-  left: auto;
-  left: 11vw;
+  left: 15vw;
 }
 .grid{
   width: 50vw;
@@ -18,17 +18,17 @@ align-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   max-height: 1vw;
   aspect-ratio: 1;
-  margin-left: auto;
+  margin-left: 15vw;
   margin-right: auto;
-  margin-top: 120px;
+  margin-top: 18vh;
 }
-.number,
-.animate{
+.number{
+  width: 4vw;
   margin: 5px;
   border-radius: 100%;
   aspect-ratio: 1;
   border: 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,1);
   transition: all 0.3s;
   font-size: 20px;
   cursor: pointer;
@@ -64,6 +64,11 @@ button:active{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 10px;
+  width:250px;
+  height: 340px;
+}
+.ostatni-container{
   background-color: rgba(255,255,255,0.8);
   border-radius: 2px;
   padding: 0 10px;
@@ -72,8 +77,8 @@ button:active{
 }
 .popup{
   opacity: 0;
-  top:20%;
-  left: -60%;
+  top:40%;
+  left: -30%;
   position: absolute;
   background-color: rgba(0,0,0,0.4);
   border-radius: 8px;
@@ -81,6 +86,7 @@ button:active{
   display: grid;
   grid-template-columns: 1fr;
   color: white;
+  cursor: default;
 }
 .buttons{
   margin: auto;
@@ -193,45 +199,71 @@ input:checked + .slider:before {
   justify-content: center;
 }
 .reset-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items:flex-start; 
   position: absolute;
-  top: 10px;
-  right: -80px;
-  padding-top: 20px;
+  top: 0;
+  right: -22%;
+  padding-top: 3vh;
   opacity: 0.7;
-  width: 200px;
-  height: 100px;
+  width: min-content;
+  height: fit-content;
+  transition: all .5s;
 }
-.animate {
+.show-settings{
+  border: none;
+  background-color: transparent;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 2px 0px 0px 2px;
+  padding: 0 10px;
+}
+.show-settings>img{
+  width: 4vh;
+}
+.show-settings>img:hover{
+  scale: 1.1;
+  animation: rotate .5s;
+}
+.show-settings:hover{
+  transform: translate(0);
+}
+.settings-content{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 0 2px 2px 2px;
+  padding: 10px 20px;}
+.clicked {
+  color: white;
+  background-color: red;
   -webkit-animation-name: scale;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in;
   -webkit-animation-fill-mode: forwards;
 }
-
-@-webkit-keyframes scale {
-  0%{
-    z-index: 1000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+@keyframes rotate {
+  to{
+    transform: rotate(720deg);
   }
+}
+@-webkit-keyframes scale {
+from{
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
   50%{
-    z-index: 1000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: scale(15);
+    transform: scale(10);
   }
   99%{
-    z-index: 1000;
+    z-index: 10;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: scale(1);
-  }
-  100%{
-    transform: scale(1);
   }
 }
 .inv{
@@ -239,4 +271,8 @@ input:checked + .slider:before {
   opacity: 0;
   top:0;
   right: 0;
+}
+.ainer{
+  width: 100%;
+  aspect-ratio: 1;
 }

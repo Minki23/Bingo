@@ -1,105 +1,103 @@
-var colors
-var visitCount = localStorage.getItem("page_view");
-      visitCount = Number(visitCount) + 1;
-      localStorage.setItem("page_view", visitCount);
-      console.log(visitCount);
-      function toggleButtonColor(button) {
-        if (button.style.backgroundColor !== "white") {
-          button.style.backgroundColor = "white";
-          button.style.color="black";
-        } else {
-          button.style.backgroundColor = "rgb(255, 0, 0)";
-          button.style.color="white";
-        }
+// Dodaje wszystkie przyciski
+const grid = document.querySelector('.grid');
+
+for (var i = 1; i <= 90; i++) {
+  grid.innerHTML += `
+  <div class="ainer">
+    <button class='number'>${i}</button>
+  </div>
+  `;
+}
+//tablica do przechowywania kliknietych liczb
+var historia = [];
+//wszystkie przyciski z numerami
+var numberButtons = document.querySelectorAll(".number");
+
+numberButtons.forEach((button) => {
+
+  //pokazywanie domyslnie przyciskow od 1 do 75
+  if (button.innerText < 75) {
+    button.style.opacity = '1';
+  } else {
+    button.style.pointerEvents = 'none'
+  };
+
+  button.addEventListener('click', function () {
+    //zmiana koloru poprzez dodawanie klasy
+    if (!button.classList.contains("clicked")) {
+      historia.push(button.innerText);
+      button.classList.add("clicked");
+    }
+    else {
+      button.classList.remove("clicked");
+      historia.splice(historia.indexOf(button.innerText), 1);
+    }
+    //zmiania ostatniej pokazywanej liczby
+    document.querySelector(".ostatnia-button").innerText = historia[historia.length - 1] || "";
+  });
+});
+const resetContainer = document.querySelector(".reset-container");
+const showSettings = document.querySelector(".show-settings");
+showSettings.addEventListener("click", () => {
+  if (resetContainer.style.right != "-22%") {
+    resetContainer.style.right = "-22%";
+    hidePopup();
+  }
+  else {
+    resetContainer.style.right = "-5%";
+  }
+})
+//dostosowywanie resetowania
+const popup = document.querySelector('.popup');
+function hidePopup() {
+  popup.style.opacity = "0";
+  popup.style.pointerEvents = "none";
+};
+
+//przycisk reset
+const resetButton = document.querySelector(".reset");
+resetButton.addEventListener('click', function () {
+  if (popup.style.opacity === "0") {
+    popup.style.opacity = "1";
+    yesButton.style.pointerEvents = "all";
+    cancelButton.style.pointerEvents = "all";
+  }
+  else {
+    hidePopup();
+  }
+});
+
+//przycisk potwierdzania wyboru
+const yesButton = document.querySelector(".tak");
+yesButton.addEventListener('click', function () {
+  numberButtons.forEach((button) => {
+    if (button.classList.contains("clicked")) {
+      button.classList.remove("clicked");
+    }
+  });
+  hidePopup();
+  historia = [];
+});
+
+//przycisk anulowania wyboru
+const cancelButton = document.querySelector(".anuluj");
+cancelButton.addEventListener('click', () => hidePopup());
+
+//wybór ilosci liczb
+var slider = document.querySelector(".slider");
+slider.addEventListener('click', function () {
+  if (slider.checked == true) {
+    numberButtons.forEach((button) => {
+      button.style.opacity = "1";
+      button.style.pointerEvents = "all";
+    });
+  }
+  else {
+    numberButtons.forEach((button) => {
+      if (button.innerText > 75) {
+        button.style.opacity = "0";
+        button.style.pointerEvents = "none";
       }
-
-      window.onload = function() {
-        for(var i=1;i<=90;i++){
-          document.getElementById('grid').innerHTML=document.getElementById('grid').innerHTML+
-          `<button class='number'>${i}</button>`
-        }
-
-        var numberButtons = document.getElementsByClassName("number");
-
-        for (var i = 0; i < numberButtons.length; i++) {
-          numberButtons[i].id="number";
-          numberButtons[i].style.backgroundColor = "white";
-          if(i<75){
-            numberButtons[i].style.opacity="1";
-          }
-          else{
-            numberButtons[i].style.pointerEvents="none";
-          }
-          numberButtons[i].addEventListener('click', function() {
-            toggleButtonColor(this);
-            document.getElementById("ostatni-container").style.opacity="1";
-            document.getElementById("ostatnia-button").innerText=this.innerText;
-            if(this.style.backgroundColor == "rgb(255, 0, 0)"){
-              ani(this);
-            }
-          });
-        }
-        var yesButton=document.getElementById("tak");
-        yesButton.style.pointerEvents="none";
-
-        var popup=document.getElementById("popup");
-        popup.style.opacity="0";
-
-        yesButton.addEventListener('click', function(){
-          for (var i = 0; i < numberButtons.length; i++) {
-            numberButtons[i].style.backgroundColor = "white";
-            numberButtons[i].style.color="black";
-          }
-          popup.style.opacity="0";
-          yesButton.style.pointerEvents="none";
-          document.getElementById("ostatnia-button").innerText="";
-        })
-
-        var resetButton=document.getElementById("reset");
-        resetButton.addEventListener('click', function(){
-          if(popup.style.opacity === "0"){
-            popup.style.opacity="1";
-            yesButton.style.pointerEvents="all";
-          }
-          else{
-            popup.style.opacity="0";
-            yesButton.style.pointerEvents="none";
-          }
-        })
-        var cancelButton=document.getElementById("anuluj");
-        cancelButton.addEventListener('click', function(){
-         popup.style.opacity="0";
-          yesButton.style.pointerEvents="none";
-        })
-
-        var slider=document.getElementById("slider");
-        slider.addEventListener('click', function(){
-          if(slider.checked==true){
-          for (var i = 0; i < numberButtons.length; i++) {
-            numberButtons[i].style.opacity="1";
-            numberButtons[i].style.pointerEvents="all";
-          }
-        }
-        else{
-          for (var i = 0; i < numberButtons.length; i++) {
-            if(numberButtons[i].innerHTML>75){
-              numberButtons[i].style.opacity="0";
-              numberButtons[i].style.pointerEvents="none";
-            }
-          }
-        }
-      })
-      };
-
-      async function ani(btn) {
-        btn.className = 'animate';
-        await sleep(5000);
-        btn.className = 'number';
-      }
-      function sleep(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      function reset(){
-        localStorage.setItem("page_view", 0);
-        console.log(localStorage.getItem("page_view"));
-      }
+    });
+  }
+});
